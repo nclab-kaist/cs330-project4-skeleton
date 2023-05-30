@@ -19,6 +19,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.os.SystemClock
 import android.util.Log
+import com.example.pj4test.audioInference.SnapClassifier
 import org.tensorflow.lite.gpu.CompatibilityList
 import org.tensorflow.lite.support.image.ImageProcessor
 import org.tensorflow.lite.support.image.TensorImage
@@ -27,27 +28,23 @@ import org.tensorflow.lite.task.core.BaseOptions
 import org.tensorflow.lite.task.vision.detector.Detection
 import org.tensorflow.lite.task.vision.detector.ObjectDetector
 
-class PersonClassifier(
-    val context: Context,
-    val objectDetectorListener: DetectorListener?
-) {
+class PersonClassifier {
     // For this example this needs to be a var so it can be reset on changes. If the ObjectDetector
     // will not change, a lazy val would be preferable.
     private var objectDetector: ObjectDetector? = null
 
-    init {
-        setupObjectDetector()
-    }
+    // Listener that will be handle the result of this classifier
+    private var objectDetectorListener: DetectorListener? = null
 
-    fun clearObjectDetector() {
-        objectDetector = null
+    fun initialize(context: Context) {
+        setupObjectDetector(context)
     }
 
     // Initialize the object detector using current settings on the
     // thread that is using it. CPU and NNAPI delegates can be used with detectors
     // that are created on the main thread and used on a background thread, but
     // the GPU delegate needs to be used on the thread that initialized the detector
-    private fun setupObjectDetector() {
+    private fun setupObjectDetector(context: Context) {
         // Create the base options for the detector using specifies max results and score threshold
         val optionsBuilder =
             ObjectDetector.ObjectDetectorOptions.builder()
@@ -69,11 +66,11 @@ class PersonClassifier(
         }
     }
 
-    fun detect(image: Bitmap, imageRotation: Int) {
-        if (objectDetector == null) {
-            setupObjectDetector()
-        }
+    fun clearObjectDetector() {
+        objectDetector = null
+    }
 
+    fun detect(image: Bitmap, imageRotation: Int) {
         // Inference time is the difference between the system time at the start and finish of the
         // process
         var inferenceTime = SystemClock.uptimeMillis()
@@ -106,6 +103,10 @@ class PersonClassifier(
             imageHeight: Int,
             imageWidth: Int
         )
+    }
+
+    fun setDetectorListener(listener: DetectorListener) {
+        objectDetectorListener = listener
     }
 
     companion object {
