@@ -56,24 +56,6 @@ class PersonClassifier(
 
         // Set general detection options, including number of used threads
         val baseOptionsBuilder = BaseOptions.builder().setNumThreads(NUM_THREADS)
-
-        // Use the specified hardware for running the model. Default to CPU
-        when (CURRENT_DELEGATE) {
-            DELEGATE_CPU -> {
-                // Default
-            }
-            DELEGATE_GPU -> {
-                if (CompatibilityList().isDelegateSupportedOnThisDevice) {
-                    baseOptionsBuilder.useGpu()
-                } else {
-                    objectDetectorListener?.onObjectDetectionError("GPU is not supported on this device")
-                }
-            }
-            DELEGATE_NNAPI -> {
-                baseOptionsBuilder.useNnapi()
-            }
-        }
-
         optionsBuilder.setBaseOptions(baseOptionsBuilder.build())
 
         try {
@@ -130,10 +112,6 @@ class PersonClassifier(
         const val THRESHOLD: Float = 0.5f
         const val NUM_THREADS: Int = 2
         const val MAX_RESULTS: Int = 3
-        const val DELEGATE_CPU = 0
-        const val DELEGATE_GPU = 1
-        const val DELEGATE_NNAPI = 2
-        const val CURRENT_DELEGATE: Int = DELEGATE_CPU
         const val MODEL_NAME = "mobilenet_v1.tflite"
     }
 }
