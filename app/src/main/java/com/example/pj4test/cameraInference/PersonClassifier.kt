@@ -29,9 +29,8 @@ import org.tensorflow.lite.task.vision.detector.Detection
 import org.tensorflow.lite.task.vision.detector.ObjectDetector
 
 class PersonClassifier {
-    // For this example this needs to be a var so it can be reset on changes. If the ObjectDetector
-    // will not change, a lazy val would be preferable.
-    private var objectDetector: ObjectDetector? = null
+    // Libraries for object detection
+    lateinit var objectDetector: ObjectDetector
 
     // Listener that will be handle the result of this classifier
     private var objectDetectorListener: DetectorListener? = null
@@ -66,10 +65,6 @@ class PersonClassifier {
         }
     }
 
-    fun clearObjectDetector() {
-        objectDetector = null
-    }
-
     fun detect(image: Bitmap, imageRotation: Int) {
         // Inference time is the difference between the system time at the start and finish of the
         // process
@@ -86,7 +81,7 @@ class PersonClassifier {
         // Preprocess the image and convert it into a TensorImage for detection.
         val tensorImage = imageProcessor.process(TensorImage.fromBitmap(image))
 
-        val results = objectDetector?.detect(tensorImage)
+        val results = objectDetector.detect(tensorImage)
         inferenceTime = SystemClock.uptimeMillis() - inferenceTime
         objectDetectorListener?.onObjectDetectionResults(
             results,
