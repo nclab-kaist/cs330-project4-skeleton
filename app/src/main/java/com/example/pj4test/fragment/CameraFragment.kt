@@ -84,9 +84,9 @@ class CameraFragment : Fragment(), PersonClassifier.DetectorListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        personClassifier = PersonClassifier(
-            context = requireContext(),
-            objectDetectorListener = this)
+        personClassifier = PersonClassifier()
+        personClassifier.initialize(requireContext())
+        personClassifier.setDetectorListener(this)
 
         // Initialize our background executor
         cameraExecutor = Executors.newSingleThreadExecutor()
