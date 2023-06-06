@@ -201,6 +201,8 @@ class CameraFragment : Fragment(), PersonClassifier.DetectorListener {
             )
             
             // find at least one bounding box of the person
+            val numPerson = results!!.count { it.categories[0].label == "person" }
+            Log.d("Camera", numPerson.toString())
             val isPersonDetected: Boolean = results!!.find { it.categories[0].label == "person" } != null
             
             // change UI according to the result

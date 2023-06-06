@@ -26,24 +26,17 @@
         app:layout_constraintTop_toTopOf="parent"
         android:padding="5dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/audioFragmentContainerView"
+        android:name="com.example.pj4test.fragment.AudioFragment"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/lemon_milk_medium"
-        android:gravity="center"
-        android:padding="5dp"
-        android:shadowColor="#B3000000"
-        android:shadowDx="7.0"
-        android:shadowDy="7.0"
-        android:shadowRadius="7.0"
-        android:text="0 db"
-        android:textColor="#FFC000"
-        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/in_use_text"
-        android:layout_marginTop="-15dp"/>
+        android:layout_marginTop="-15dp"
+        tools:layout="@layout/fragment_audio" />
 
     <Button
         android:id="@+id/in_use_button_1"

@@ -9,7 +9,9 @@ import org.tensorflow.lite.support.audio.TensorAudio
 import org.tensorflow.lite.task.audio.classifier.AudioClassifier
 import java.util.*
 import kotlin.concurrent.scheduleAtFixedRate
-
+import kotlin.math.abs
+import kotlin.math.log10
+import kotlin.math.roundToInt
 
 class SnapClassifier {
     // Libraries for audio classification
@@ -106,7 +108,8 @@ class SnapClassifier {
         if (task == null) {
             task = Timer().scheduleAtFixedRate(0, REFRESH_INTERVAL_MS) {
                 val score = inference()
-                detectorListener?.onResults(score)
+                val db = getAmplitude()
+                detectorListener?.onResults(score, db.roundToInt())
             }
         }
     }
@@ -114,6 +117,29 @@ class SnapClassifier {
     fun stopInferencing() {
         task?.cancel()
         task = null
+    }
+
+    fun getAmplitude(): Float {
+        val buffer = FloatArray(recorder.channelCount * recorder.bufferSizeInFrames)
+
+        // read the data into the buffer
+        val read = recorder.read(buffer, 0, buffer.size, AudioRecord.READ_NON_BLOCKING)
+        Log.d("Snore DB", "read:$read")
+        if (read > 0) {
+            var amplitude = 0f
+            for (i in buffer.indices) {
+                amplitude += abs(buffer[i])
+            }
+
+            // Determine amplitude
+            val amplitudeDb = 20 * log10(abs(amplitude))
+            val dbString = amplitudeDb.toString()
+            Log.d("Snore DB", "dB: $dbString")
+            return amplitudeDb
+            //TextView textAmplitude = (TextView) findViewById(R.id.tvAmplitude);
+            //textAmplitude.setText(dbString);
+        }
+        return 0f
     }
 
     /**
@@ -124,7 +150,7 @@ class SnapClassifier {
      * and set itself to this' detector listener
      */
     interface DetectorListener {
-        fun onResults(score: Float)
+        fun onResults(score: Float, db: Int)
     }
 
     /**

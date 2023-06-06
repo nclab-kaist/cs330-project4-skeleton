@@ -1,6 +1,7 @@
 package com.example.pj4test.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,13 +23,14 @@ class AudioFragment: Fragment(), SnapClassifier.DetectorListener {
     lateinit var snapClassifier: SnapClassifier
 
     // views
-    lateinit var snapView: TextView
+    lateinit var ampView: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Log.d("create", "success")
         _fragmentAudioBinding = FragmentAudioBinding.inflate(inflater, container, false)
 
         return fragmentAudioBinding.root
@@ -37,7 +39,7 @@ class AudioFragment: Fragment(), SnapClassifier.DetectorListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        snapView = fragmentAudioBinding.SnapView
+        ampView = fragmentAudioBinding.AmplitudeView
 
         snapClassifier = SnapClassifier()
         snapClassifier.initialize(requireContext())
@@ -54,16 +56,14 @@ class AudioFragment: Fragment(), SnapClassifier.DetectorListener {
         snapClassifier.startInferencing()
     }
 
-    override fun onResults(score: Float) {
+    override fun onResults(score: Float, db: Int) {
         activity?.runOnUiThread {
-            if (score > SnapClassifier.THRESHOLD) {
-                snapView.text = "SNAP"
-                snapView.setBackgroundColor(ProjectConfiguration.activeBackgroundColor)
-                snapView.setTextColor(ProjectConfiguration.activeTextColor)
+            ampView.text = "%3s ".format(db)
+//            Log.d("result", "dB: ${ampView.text}")
+            if (db > 20) {
+                ampView.setTextColor(ProjectConfiguration.activeTextColor)
             } else {
-                snapView.text = "NO SNAP"
-                snapView.setBackgroundColor(ProjectConfiguration.idleBackgroundColor)
-                snapView.setTextColor(ProjectConfiguration.idleTextColor)
+                ampView.setTextColor(ProjectConfiguration.idleTextColor)
             }
         }
     }
