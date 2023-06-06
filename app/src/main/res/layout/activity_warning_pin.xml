@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B42222"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/warning_pin_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lemon_milk_bold"
+        android:gravity="center"
+        android:padding="5dp"
+        android:shadowColor="#B3000000"
+        android:shadowDx="10.0"
+        android:shadowDy="10.0"
+        android:shadowRadius="10.0"
+        android:text="warning!"
+        android:textColor="#FFFFFF"
+        android:textSize="58sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/warning_pin_information"/>
+
+    <TextView
+        android:id="@+id/warning_pin_information"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lemon_milk_medium"
+        android:gravity="center"
+        android:padding="5dp"
+        android:shadowColor="#B3000000"
+        android:shadowDx="7.0"
+        android:shadowDy="7.0"
+        android:shadowRadius="7.0"
+        android:text="Enter pin to\nresume using"
+        android:textColor="#FFFFFF"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lemon_milk_medium"
+        android:gravity="center"
+        android:padding="5dp"
+        android:shadowColor="#B3000000"
+        android:shadowDx="7.0"
+        android:shadowDy="7.0"
+        android:shadowRadius="7.0"
+        android:text="tap to return"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/warning_pin_information"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
