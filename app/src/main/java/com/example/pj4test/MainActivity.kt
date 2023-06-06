@@ -2,14 +2,16 @@ package com.example.pj4test
 
 import android.Manifest.permission.CAMERA
 import android.Manifest.permission.RECORD_AUDIO
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
@@ -21,9 +23,10 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_free)
-
         checkPermissions() // check permissions
+        val i = Intent(this, FreeActivity::class.java)
+        startActivity(i)
+        finish()
     }
 
     private fun checkPermissions() {

@@ -33,6 +33,21 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:name=".FreeActivity">
+        </activity>
+        <activity
+            android:name=".RegisterActivity">
+        </activity>
+        <activity
+            android:name=".InUseActivity">
+        </activity>
+        <activity
+            android:name=".VacantActivity">
+        </activity>
+        <activity
+            android:name=".WarningActivity">
+        </activity>
     </application>
 
 </manifest>
