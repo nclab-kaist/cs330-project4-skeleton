@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E2F0D9"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/register_textview_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lemon_milk_bold"
+        android:gravity="center"
+        android:text="take a seat"
+        android:textSize="50sp"
+        android:textColor="#70AD47"
+        android:shadowColor="#B3000000"
+        android:shadowRadius="10.0"
+        android:shadowDx="10.0"
+        android:shadowDy="10.0"
+        android:padding="5dp"
+        android:layout_marginVertical="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/register_layout_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/register_textview_1"
+        app:layout_constraintBottom_toTopOf="@+id/register_textview_4">
+
+        <TextView
+            android:id="@+id/register_textview_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lemon_milk_bold"
+            android:gravity="center"
+            android:text="2"
+            android:textSize="90sp"
+            android:textColor="#70AD47"
+            android:shadowColor="#B3000000"
+            android:shadowRadius="10.0"
+            android:shadowDx="10.0"
+            android:shadowDy="10.0"
+            android:padding="5dp"
+            app:layout_constraintEnd_toStartOf="@id/register_up_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/register_textview_3"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lemon_milk_bold"
+            android:gravity="center"
+            android:padding="5dp"
+            android:shadowColor="#B3000000"
+            android:shadowDx="10.0"
+            android:shadowDy="10.0"
+            android:shadowRadius="10.0"
+            android:text="Person"
+            android:textColor="#70AD47"
+            android:textSize="35sp"
+            android:translationY="-15dp"
+            app:layout_constraintEnd_toStartOf="@id/register_up_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_textview_2" />
+
+        <TextView
+            android:id="@+id/register_up_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lemon_milk_bold"
+            android:gravity="center"
+            android:padding="5dp"
+            android:shadowColor="#B3000000"
+            android:shadowDx="10.0"
+            android:shadowDy="10.0"
+            android:shadowRadius="10.0"
+            android:text="▲"
+            android:textColor="#70AD47"
+            android:textSize="50sp"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/register_textview_3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/register_down_arrow"/>
+
+        <TextView
+            android:id="@+id/register_down_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lemon_milk_bold"
+            android:gravity="center"
+            android:padding="5dp"
+            android:shadowColor="#B3000000"
+            android:shadowDx="10.0"
+            android:shadowDy="10.0"
+            android:shadowRadius="10.0"
+            android:text="▼"
+            android:textColor="#70AD47"
+            android:textSize="50sp"
+            android:translationY="-20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/register_textview_3"
+            app:layout_constraintTop_toBottomOf="@id/register_up_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/register_textview_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lemon_milk_bold"
+        android:gravity="center"
+        android:padding="5dp"
+        android:shadowColor="#B3000000"
+        android:shadowDx="10.0"
+        android:shadowDy="10.0"
+        android:shadowRadius="10.0"
+        android:text="student number"
+        android:textColor="#70AD47"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@+id/register_layout_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_layout_1" />
+
+    <LinearLayout
+        android:id="@+id/register_layout_2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/register_textview_4"
+        app:layout_constraintBottom_toTopOf="@+id/register_button">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lemon_milk_medium"
+                android:hint="e.g. 20200212"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lemon_milk_bold"
+                android:hint=""
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:fontFamily="@font/lemon_milk_medium"
+        android:gravity="center"
+        android:text="start"
+        android:textSize="30sp"
+        android:letterSpacing="0"
+        android:textColor="#548235"
+        android:backgroundTint="#C5E0B4"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
